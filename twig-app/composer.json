@@ -1,0 +1,19 @@
+{
+  "name": "devid/tickit-twig",
+  "description": "Ticket management app built with Twig",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Devid\\TickitTwig\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dev_id",
+      "email": "duwagbale07@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.21"
+  }
+}
