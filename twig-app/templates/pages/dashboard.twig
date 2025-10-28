@@ -1,0 +1,107 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+  <main class="px-4 py-12 max-w-[90rem] mx-auto min-h-[80vh] flex flex-col gap-8">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8">
+      <h1 class="text-3xl font-semibold text-gray-900">
+        Welcome back, <span class="text-orange-500">{{userName}}</span>
+      </h1>
+
+      <!-- Navigation -->
+      <div>
+        <a
+          href="?page=tickets"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition-colors"
+        >
+          Manage Tickets
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center border border-gray-100">
+        <h2 class="text-gray-600 text-sm uppercase tracking-wide">
+          Total Tickets
+        </h2>
+        <p class="text-3xl font-bold text-gray-800 mt-2">{{stats.total}}</p>
+      </div>
+
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center border border-gray-100">
+        <h2 class="text-gray-600 text-sm uppercase tracking-wide">
+          Open
+        </h2>
+        <p class="text-3xl font-bold text-green-600 mt-2">{{stats.open}}</p>
+      </div>
+
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center border border-gray-100">
+        <h2 class="text-gray-600 text-sm uppercase tracking-wide">
+          In Progress
+        </h2>
+        <p class="text-3xl font-bold text-amber-500 mt-2">{{stats.in_progress}}</p>
+      </div>
+
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center border border-gray-100">
+        <h2 class="text-gray-600 text-sm uppercase tracking-wide">
+          Closed
+        </h2>
+        <p class="text-3xl font-bold text-gray-500 mt-2">{{stats.closed}}</p>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section>
+      <h2 class="text-lg md:text-xl font-medium mb-4">Recent Activity</h2>
+
+      {% if recentTickets|length == 0 %}
+      <p class="text-gray-500 text-center">
+        No activity to show. Start by creating a ticket!
+      </p>
+
+      {% else %}
+      <div class="flex overflow-x-scroll rounded-lg border border-[#cfdbe7] bg-slate-50 mt-6">
+        <table class="flex-1">
+          <thead>
+            <tr class="bg-slate-50">
+              <th class="px-4 py-3 text-left text-[#0d141b] w-[400px] text-sm font-medium leading-normal">
+                Title
+              </th>
+              <th class="px-4 py-3 text-left text-[#0d141b] w-[400px] text-sm font-medium leading-normal">
+                Description
+              </th>
+              <th class="px-4 py-3 text-left text-[#0d141b] w-60 text-sm font-medium leading-normal">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ticket in recentTickets %}
+            <tr>
+              <td class="px-4 py-3 text-gray-800">{{ ticket.title }}</td>
+              <td class="px-4 py-3 text-gray-600">
+                {{ticket.description}}
+              </td>
+
+              <td class="px-4 py-3 font-medium
+                  {% if ticket.status == 'open' %}
+                    text-green-600
+                  {% elseif ticket.status == 'in_progress' %}
+                    text-amber-500
+                  {% elseif ticket.status == 'closed' %}
+                    text-gray-500
+                  {% endif %}
+                ">
+                  {{ ticket.status|replace({'_': ' '})|capitalize }}
+                </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </section>
+  </main>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<header class="w-full bg-white shadow-sm">
+  <nav class="max-w-[90rem] mx-auto flex items-center justify-between p-4">
+    <a href="/" class="text-2xl font-bold text-green-700">Tick-it</a>
+
+    {# Desktop Menu #}
+    <ul class="hidden sm:flex items-center gap-4 text-gray-700">
+      {% if not isAuthenticated %}
+        <li>
+          <a href="/index.php?page=login" class="hover:text-green-600 transition">Login</a>
+        </li>
+        <li>
+          <a href="/index.php?page=signup" class="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition">Sign Up</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="/" class="hover:text-green-600 transition">Home</a>
+        </li>
+        <li>
+          <a href="/index.php?page=dashboard" class="hover:text-green-600 transition">Dashboard</a>
+        </li>
+        <li>
+          <a href="/index.php?page=tickets" class="hover:text-green-600 transition">Tickets</a>
+        </li>
+        <form method="POST" action="/logout" class="inline">
+          <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition">Logout</button>
+        </form>
+      {% endif %}
+    </ul>
+
+    {# Hamburger Icon for Mobile #}
+    <button
+      id="menuToggle"
+      class="sm:hidden flex items-center p-2 text-gray-700 hover:text-green-600 transition"
+    >
+      <img src="/assets/menu.svg" alt="Menu icon" class="w-6 h-6 block" id="menuIcon" />
+      <img src="/assets/close.svg" alt="Close icon" class="w-6 h-6 hidden" id="closeIcon" />
+    </button>
+  </nav>
+
+  {# Mobile Menu #}
+  <div id="mobileMenu" class="sm:hidden hidden bg-white shadow-md">
+    <ul class="flex flex-col items-center p-4 space-y-4">
+      {% if not isAuthenticated %}
+        <li>
+          <a href="/index.php?page=login" class="text-gray-700 hover:text-green-600 transition py-2">Login</a>
+        </li>
+        <li>
+          <a href="/index.php?page=signup" class="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition my-2">Sign Up</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="/" class="hover:text-green-600 transition py-2">Home</a>
+        </li>
+        <li>
+          <a href="/index.php?page=dashboard" class="hover:text-green-600 transition py-2">Dashboard</a>
+        </li>
+        <li>
+          <a href="/index.php?page=tickets" class="hover:text-green-600 transition py-2">Tickets</a>
+        </li>
+        <form method="POST" action="/logout" class="inline">
+          <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition my-2">Logout</button>
+        </form>
+      {% endif %}
+    </ul>
+  </div>
+</header>

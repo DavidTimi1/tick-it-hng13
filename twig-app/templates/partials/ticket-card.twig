@@ -1,0 +1,70 @@
+<div class="bg-white shadow-md rounded-2xl p-5 border border-gray-100 flex flex-col gap-3">
+  <h3 class="text-lg font-semibold text-gray-800">{{ title }}</h3>
+  <p class="text-sm text-gray-600">{{ description }}</p>
+
+  {% set statusClass = {
+    'open': 'text-green-600 bg-green-100',
+    'in_progress': 'text-amber-600 bg-amber-100',
+    'closed': 'text-gray-600 bg-gray-100'
+  }[status]|default('text-gray-600 bg-gray-100') %}
+
+  <span class="inline-block self-start text-xs font-medium px-3 py-1 rounded-full {{ statusClass }}">
+    {{ status|replace({'_': ' '})|capitalize }}
+  </span>
+
+  <div class="flex gap-3 mt-3">
+    <form action="?page=tickets" method="POST">
+      <input type="hidden" name="action" value="edit">
+      <input type="hidden" name="id" value="{{ id }}">
+      <button
+        type="submit"
+        class="text-sm bg-amber-100 text-amber-700 hover:bg-amber-200 px-3 py-1 rounded-md font-medium transition-colors"
+      >
+        Edit
+      </button>
+    </form>
+
+    <form action="?page=tickets" method="POST" onsubmit="return confirm('Delete this ticket?');">
+      <input type="hidden" name="action" value="delete">
+      <input type="hidden" name="id" value="{{ id }}">
+      <button
+        type="submit"
+        class="text-sm bg-red-100 text-red-700 hover:bg-red-200 px-3 py-1 rounded-md font-medium transition-colors"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
+
+
+{# 
+<div class="bg-white shadow-md rounded-2xl p-5 border border-gray-100 flex flex-col gap-3">
+  <h3 class="text-lg font-semibold text-gray-800">{{ title }}</h3>
+  <p class="text-sm text-gray-600">{{ description }}</p>
+
+  {% set statusClass = {
+    'open': 'text-green-600 bg-green-100',
+    'in_progress': 'text-amber-600 bg-amber-100',
+    'closed': 'text-gray-600 bg-gray-100'
+  }[status]|default('text-gray-600 bg-gray-100') %}
+
+  <span class="inline-block self-start text-xs font-medium px-3 py-1 rounded-full {{ statusClass }}">
+    {{ status|replace({'_': ' '})|capitalize }}
+  </span>
+
+  <div class="flex gap-3 mt-3">
+    <button
+      type="button"
+      class="text-sm bg-amber-100 text-amber-700 hover:bg-amber-200 px-3 py-1 rounded-md font-medium transition-colors"
+    >
+      Edit
+    </button>
+    <button
+      type="button"
+      class="text-sm bg-red-100 text-red-700 hover:bg-red-200 px-3 py-1 rounded-md font-medium transition-colors"
+    >
+      Delete
+    </button>
+  </div>
+</div> #}

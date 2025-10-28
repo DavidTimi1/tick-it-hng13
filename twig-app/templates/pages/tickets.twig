@@ -1,0 +1,110 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<main class="px-4 py-10 max-w-[90rem] mx-auto min-h-[80vh] flex flex-col gap-10">
+  <!-- Header -->
+  <section class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <h1 class="text-3xl font-semibold text-gray-900">Ticket Management</h1>
+    <a
+      href="?page=dashboard"
+      class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-md text-sm font-medium transition-colors"
+    >
+      Back to Dashboard
+    </a>
+  </section>
+
+  <!-- ✅ Feedback (success / validation) -->
+  {% if response is defined and response %}
+    {% if response.success %}
+      <p class="bg-green-100 text-green-700 px-4 py-3 rounded-md">{{ response.message }}</p>
+    {% elseif response.errors is defined %}
+      <ul class="bg-red-100 text-red-700 px-4 py-3 rounded-md list-disc list-inside">
+        {% for field, msg in response.errors %}
+          <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% elseif response.message is defined %}
+      <p class="bg-red-100 text-red-700 px-4 py-3 rounded-md">{{ response.message }}</p>
+    {% endif %}
+  {% endif %}
+
+  <!-- Ticket Form -->
+  {% include "partials/ticket-form.twig" %}
+
+  <!-- Tickets List -->
+  <section>
+    <h2 class="text-lg md:text-xl font-medium mb-4">Created Tickets</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% if tickets is empty %}
+        <p class="text-gray-500 text-center col-span-full">
+          No tickets yet. Create your first one above!
+        </p>
+      {% else %}
+        {% for ticket in tickets %}
+          {% include "partials/ticket-card.twig" with {
+            id: ticket.id,
+            title: ticket.title,
+            description: ticket.description,
+            status: ticket.status
+          } %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+
+{# 
+{% block content %}
+
+  <main class="px-4 py-10 max-w-[90rem] mx-auto min-h-[80vh] flex flex-col gap-10">
+    <!-- Header -->
+    <section class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <h1 class="text-3xl font-semibold text-gray-900">Ticket Management</h1>
+      <a
+        href="?page=dashboard"
+        class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-md text-sm font-medium transition-colors"
+      >
+        Back to Dashboard
+      </a>
+    </section>
+
+    <!-- Ticket Form -->
+    {% include "partials/ticket-form.twig" %}
+
+    <!-- Tickets List -->
+    <section>
+      <h2 class="text-lg md:text-xl font-medium mb-4">Created Tickets</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+        <p class="text-gray-500 text-center col-span-full">
+          No tickets yet. Create your first one above!
+        </p>
+
+       
+        {% include "partials/ticket-card.twig" with {
+          title: "Website Bug Fix",
+          description: "User reported a layout issue on dashboard.",
+          status: "open"
+        } %}
+
+        {% include "partials/ticket-card.twig" with {
+          title: "Add Payment Gateway",
+          description: "Integrate Stripe checkout flow.",
+          status: "in_progress"
+        } %}
+
+        {% include "partials/ticket-card.twig" with {
+          title: "Email Notifications",
+          description: "Setup email alerts for ticket updates.",
+          status: "closed"
+        } %}
+      </div>
+    </section>
+  </main>
+
+{% endblock %} #}
+

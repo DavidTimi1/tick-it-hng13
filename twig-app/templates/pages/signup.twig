@@ -1,0 +1,109 @@
+{% extends 'base.twig' %}
+{% set page = 'signup' %}
+
+{% block content %}
+<section
+  aria-labelledby="formTitle"
+  class="bg-white shadow-lg rounded-2xl w-full max-w-md p-8 mx-auto mt-16 mb-4"
+>
+  <h1
+    id="formTitle"
+    class="text-2xl font-bold text-center mb-4 text-green-700"
+  >
+    Create an Account
+  </h1>
+
+  <form
+    aria-labelledby="formTitle"
+    class="flex flex-col gap-4"
+    data-form="signup"
+    novalidate
+  >
+    <div>
+      <label
+        for="name"
+        class="block text-sm font-medium text-gray-700"
+      >
+        Name
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        aria-describedby="nameError"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="John Doe"
+      />
+      <p id="nameError" data-error="name" class="text-red-500 text-sm mt-1"></p>
+    </div>
+
+    <div>
+      <label
+        for="email"
+        class="block text-sm font-medium text-gray-700"
+      >
+        Email
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        aria-describedby="emailError"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="name@example.com"
+      />
+      <p id="emailError" data-error="email" class="text-red-500 text-sm mt-1"></p>
+    </div>
+
+    <div>
+      <label
+        for="password"
+        class="block text-sm font-medium text-gray-700"
+      >
+        Password
+      </label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        aria-describedby="passwordError"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="••••••••"
+      />
+      <p id="passwordError" data-error="password" class="text-red-500 text-sm mt-1"></p>
+    </div>
+
+    <div>
+      <label
+        for="confirmedPassword"
+        class="block text-sm font-medium text-gray-700"
+      >
+        Confirm Password
+      </label>
+      <input
+        id="confirmedPassword"
+        name="confirmPassword"
+        type="password"
+        aria-describedby="passwordConfirmError"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="••••••••"
+      />
+      <p id="passwordConfirmError" data-error="confirmPassword" class="text-red-500 text-sm mt-1"></p>
+    </div>
+
+    <button
+      type="submit"
+      class="bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition cursor-pointer"
+    >
+      Sign Up
+    </button>
+  </form>
+
+  <p class="text-sm text-center text-gray-600 mt-4">
+    Already have an account?
+    <a href="/?page=login" class="text-green-600 pl-1 font-medium hover:underline">
+      Log in
+    </a>
+  </p>
+</section>
+{% endblock %}

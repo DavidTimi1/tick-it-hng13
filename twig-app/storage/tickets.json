@@ -1,0 +1,27 @@
+{
+    "users": [
+        {
+            "email": "test@example.com",
+            "tickets": [
+                {
+                    "id": 1761675403,
+                    "title": "Trey",
+                    "description": "rgjtepjhirgwhsrhv",
+                    "status": "in_progress"
+                },
+                {
+                    "id": 1761675888,
+                    "title": "Twig",
+                    "description": "",
+                    "status": "in_progress"
+                },
+                {
+                    "id": 1761678409,
+                    "title": "lol",
+                    "description": "",
+                    "status": "open"
+                }
+            ]
+        }
+    ]
+}
