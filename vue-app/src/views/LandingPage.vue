@@ -1,0 +1,104 @@
+<script setup>
+import { computed } from "vue";
+import { RouterLink } from "vue-router";
+import NavBar from "../components/NavBar.vue";
+import Footer from "../components/Footer.vue";
+import { useAuthStore } from "../stores/authStore";
+import Wave from "../assets/wave.svg";
+
+const authStore = useAuthStore();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+</script>
+
+<template>
+  <NavBar />
+
+  <main class="flex flex-col items-center justify-center w-full">
+    <!-- Hero Section -->
+    <section
+      class="relative w-full bg-gradient-to-b from-green-500 to-green-700 text-white overflow-hidden"
+    >
+      <div
+        class="max-w-[90rem] mx-auto px-4 py-24 text-center flex flex-col items-center gap-6"
+      >
+        <h1 class="relative max-w-2xl text-4xl md:text-6xl font-bold">
+          Create. Track. Resolve. Tick-it.
+
+          <!-- Decorative circles -->
+          <span
+            class="absolute -top-10 left-0 w-32 h-32 bg-green-300 rounded-full opacity-10"
+          ></span>
+          <span
+            class="absolute -bottom-10 right-0 w-32 h-32 bg-green-300 rounded-full opacity-10"
+          ></span>
+        </h1>
+
+        <p class="max-w-lg text-lg md:text-xl">
+          Manage every ticket with ease, clarity, and confidence.
+        </p>
+
+        <div
+          v-if="!isAuthenticated"
+          class="flex flex-col sm:flex-row gap-4 my-6"
+        >
+          <RouterLink
+            to="/auth/login"
+            class="bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:opacity-90 transition"
+          >
+            Login
+          </RouterLink>
+          <RouterLink
+            to="/auth/signup"
+            class="bg-green-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-900 transition"
+          >
+            Get Started
+          </RouterLink>
+        </div>
+
+        <div v-else class="flex items-center justify-center my-6">
+          <RouterLink
+            to="/dashboard"
+            class="text-green-700 bg-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition"
+          >
+            Proceed to Dashboard
+          </RouterLink>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <img
+          :src="Wave"
+          alt="Wave background"
+          aria-hidden="true"
+          class="w-full h-28"
+        />
+      </div>
+    </section>
+
+    <!-- Feature Boxes -->
+    <section
+      class="max-w-[90rem] w-full px-4 py-16 grid gap-6 sm:grid-cols-2 md:grid-cols-3"
+    >
+      <div class="bg-white shadow-lg rounded-2xl p-6 text-center border">
+        <h3 class="text-xl font-semibold mb-2">Create Tickets</h3>
+        <p class="text-gray-600">
+          Log new issues with details and assign priorities effortlessly.
+        </p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-6 text-center border">
+        <h3 class="text-xl font-semibold mb-2">Track Progress</h3>
+        <p class="text-gray-600">
+          View ticket statuses in real time to monitor updates and resolutions.
+        </p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-6 text-center border">
+        <h3 class="text-xl font-semibold mb-2">Collaborate</h3>
+        <p class="text-gray-600">
+          Manage team workflows efficiently with role-based ticket assignments.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</template>
