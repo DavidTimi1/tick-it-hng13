@@ -1,7 +1,3 @@
-Absolutely! Here’s the revised, polished version including **general repository cloning instructions** at the top, along with setup for Vue, React, and Twig:
-
----
-
 # Tick-it Frameworks Overview
 
 Welcome to the **Tick-it** application frameworks documentation! This project utilizes three key frameworks: **Vue**, **React**, and **Twig**. Each framework resides in its own directory. Below are links to the respective README files for detailed information on implementation, libraries used, state structure, and example test user credentials.
@@ -17,8 +13,8 @@ Welcome to the **Tick-it** application frameworks documentation! This project ut
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/DavidTimi1/tick-it-hng13
+   cd tick-it-hng13
    ```
 2. Ensure **Node.js** (for Vue and React) and **Composer** (for Twig) are installed.
 3. Follow the framework-specific instructions below.
