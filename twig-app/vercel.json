@@ -1,13 +1,12 @@
 {
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@latest"
-    }
-  },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "source": "/api/(.*)",
+      "destination": "https://mechanical-ilse-timidev-786d0fe1.koyeb.app/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://mechanical-ilse-timidev-786d0fe1.koyeb.app/$1"
     }
   ]
 }
